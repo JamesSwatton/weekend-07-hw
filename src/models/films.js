@@ -6,7 +6,7 @@ const Films = function () {
 };
 
 Films.prototype.bindEvents = function () {
-  
+
 };
 
 Films.prototype.getData = function () {
