@@ -11,6 +11,7 @@ DirectorSelectView.prototype.bindEvents = function () {
 
   this.element.addEventListener('change', (event) => {
     const selectedIndex = event.target.value;
+    console.log(selectedIndex)
     PubSub.publish('DirectorSelectView:change', selectedIndex)
   });
 };

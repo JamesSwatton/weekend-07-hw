@@ -10,6 +10,10 @@ Films.prototype.bindEvents = function () {
   PubSub.subscribe('DirectorSelectView:change', (event) => {
     this.publishFilmsByDirector(event.detail);
   });
+
+  PubSub.subscribe('filter-select:change', (event) => {
+    if (event.detail === 'rating') this.publishFilmsByRating();
+  })
 };
 
 Films.prototype.getData = function () {
@@ -47,7 +51,18 @@ Films.prototype.filmsByDirector = function (selectedIndex) {
 
 Films.prototype.publishFilmsByDirector = function (selectedIndex) {
   const foundFilms = this.filmsByDirector(selectedIndex);
-  PubSub.publish('Films:films-ready', foundFilms)
+  PubSub.publish('Films:films-ready', foundFilms);
+};
+
+Films.prototype.sortByRating = function () {
+  return this.filmsData
+    .sort((a, b) => a.rt_score - b.rt_score)
+    .reverse();
+};
+
+Films.prototype.publishFilmsByRating = function () {
+  const filmsHighToLow = this.sortByRating();
+  PubSub.publish('Films:films-ready', filmsHighToLow);
 };
 
 module.exports = Films;
