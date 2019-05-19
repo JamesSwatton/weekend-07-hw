@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+}
+
+body {
+  width: 900px;
+  margin: auto;
+}
+
+#logo {
+  height: 180px;
+  background-color: #12AEF0;
+  background-image: url('./images/ghibli_logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#film-list {
+  height: 600px;
+  overflow: scroll;
+  background-color: #12AEF0;
+}
+
+.film-detail {
+  padding: 40px;
+}

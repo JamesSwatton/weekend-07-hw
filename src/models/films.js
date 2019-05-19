@@ -7,7 +7,9 @@ const Films = function () {
 };
 
 Films.prototype.bindEvents = function () {
-
+  PubSub.subscribe('DirectorSelectView:change', (event) => {
+    this.publishFilmsByDirector(event.detail);
+  });
 };
 
 Films.prototype.getData = function () {
@@ -15,15 +17,14 @@ Films.prototype.getData = function () {
   request.get().then((data) => {
     this.filmsData = data;
     PubSub.publish('Films:films-ready', this.filmsData);
-    this.publishDirectors(data)
+    this.publishDirectors()
     console.log('directors', this.directors)
   })
 };
 
-Films.prototype.publishDirectors = function (data) {
-  this.data = data;
+Films.prototype.publishDirectors = function () {
   this.directors = this.uniqDirectorList();
-  PubSub.publish('Films: Directors-ready', this.directors);
+  PubSub.publish('Films:directors-ready', this.directors);
 };
 
 Films.prototype.directorList = function () {
@@ -35,6 +36,18 @@ Films.prototype.uniqDirectorList = function () {
   return this.directorList().filter((director, index, array) => {
     return array.indexOf(director) === index;
   });
+};
+
+Films.prototype.filmsByDirector = function (selectedIndex) {
+  const selectedDirector = this.directors[selectedIndex];
+  return this.filmsData.filter((film) => {
+    return film.director === selectedDirector;
+  })
+};
+
+Films.prototype.publishFilmsByDirector = function (selectedIndex) {
+  const foundFilms = this.filmsByDirector(selectedIndex);
+  PubSub.publish('Films:films-ready', foundFilms)
 };
 
 module.exports = Films;

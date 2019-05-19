@@ -5,9 +5,14 @@ const DirectorSelectView = function (element) {
 };
 
 DirectorSelectView.prototype.bindEvents = function () {
-  PubSub.subscribe('Films: Directors-ready', (event) => {
+  PubSub.subscribe('Films:directors-ready', (event) => {
     this.populate(event.detail);
   })
+
+  this.element.addEventListener('change', (event) => {
+    const selectedIndex = event.target.value;
+    PubSub.publish('DirectorSelectView:change', selectedIndex)
+  });
 };
 
 DirectorSelectView.prototype.populate = function (directors) {

@@ -5,16 +5,16 @@ const DirectorSelectView = require('./views/director_select_view.js');
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Javascript loaded')
 
-  const listContainer = document.querySelector('div#film-list')
-  const filmListView = new FilmListView(listContainer);
-  filmListView.bindEvents();
-
   const selectElement = document.querySelector('select#director-select');
   const directorSelectView = new DirectorSelectView(selectElement);
   directorSelectView.bindEvents();
 
+  const listContainer = document.querySelector('div#film-list')
+  const filmListView = new FilmListView(listContainer);
+  filmListView.bindEvents();
+
   const films = new Films();
-  // films.bindEvents();
+  films.bindEvents();
   films.getData();
 
 });
