@@ -8,8 +8,9 @@ body {
 }
 
 #logo {
-  height: 180px;
-  background-color: #12AEF0;
+  margin-top: 30px;
+  height: 160px;
+  background-color: #2980C0;
   background-image: url('./images/ghibli_logo.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -17,11 +18,26 @@ body {
 }
 
 #film-list {
-  height: 600px;
+  height: 525px;
   overflow: scroll;
-  background-color: #12AEF0;
+  background-color: #E6E0D4;
 }
 
 .film-detail {
   padding: 40px;
+}
+
+h1 {
+  padding-left: 15px;
+  /* background-color: white; */
+}
+
+h3 {
+  padding-left: 15px;
+  color: #DF735C;
+}
+
+p {
+  padding: 15px;
+  /* color: white; */
 }
