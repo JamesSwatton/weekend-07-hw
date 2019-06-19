@@ -1,6 +1,7 @@
 const PubSub = require('./helpers/pub_sub.js')
 const Films = require('./models/films.js');
 const FilmListView = require('./views/film_list_view.js');
+const FilmSelectView = require('./views/film_select_view.js');
 const DirectorSelectView = require('./views/director_select_view.js');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,6 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const listContainer = document.querySelector('div#film-list')
   const filmListView = new FilmListView(listContainer);
   filmListView.bindEvents();
+
+  const selectContainer = document.querySelector('div#select-list');
+  const filmSelectView = new FilmSelectView(selectContainer);
+  filmSelectView.bindEvents();
 
   const films = new Films();
   films.bindEvents();
