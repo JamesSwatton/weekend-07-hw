@@ -14,6 +14,10 @@ Films.prototype.bindEvents = function () {
   PubSub.subscribe('filter-select:change', (event) => {
     if (event.detail === 'rating') this.publishFilmsByRating();
   })
+
+  PubSub.subscribe('FilmSelectView:change', (event) => {
+    this.publishFilmInfo(event.detail);
+  })
 };
 
 Films.prototype.getData = function () {
@@ -63,6 +67,20 @@ Films.prototype.sortByRating = function () {
 Films.prototype.publishFilmsByRating = function () {
   const filmsHighToLow = this.sortByRating();
   PubSub.publish('Films:films-ready', filmsHighToLow);
+};
+
+Films.prototype.publishFilmInfo = function (selectedFilm) {
+
+  let selected;
+
+  this.filmsData.forEach((film) =>{
+    if(film.title === selectedFilm){
+      selected = film
+    }
+  })
+
+  console.log('selected film:', selected);
+  PubSub.publish('Films:selected-film-ready', selected);
 };
 
 module.exports = Films;

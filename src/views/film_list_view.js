@@ -6,7 +6,8 @@ const FilmListView = function(container) {
 };
 
 FilmListView.prototype.bindEvents = function () {
-  PubSub.subscribe('Films:films-ready', (event) => {
+  PubSub.subscribe('Films:selected-film-ready', (event) => {
+    console.log(event.detail)
     this.clearList();
     this.renderFilmDetailView(event.detail);
   });
@@ -16,11 +17,9 @@ FilmListView.prototype.clearList = function () {
   this.container.innerHTML = '';
 };
 
-FilmListView.prototype.renderFilmDetailView = function (films) {
-  films.forEach((film) => {
+FilmListView.prototype.renderFilmDetailView = function (film) {
     const filmItem = this.createFilmListItem(film);
     this.container.appendChild(filmItem);
-  })
 };
 
 FilmListView.prototype.createFilmListItem = function (film) {

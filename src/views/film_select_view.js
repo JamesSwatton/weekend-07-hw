@@ -10,6 +10,12 @@ FilmSelectView.prototype.bindEvents = function () {
     this.clearList();
     this.renderFilmSelectItem(event.detail);
   });
+
+  this.container.addEventListener('click', (event) => {
+    const selectedFilm = event.target.innerHTML;
+    console.log(selectedFilm)
+    PubSub.publish('FilmSelectView:change', selectedFilm)
+  });
 };
 
 FilmSelectView.prototype.clearList = function () {

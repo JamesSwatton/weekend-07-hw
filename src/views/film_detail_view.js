@@ -24,14 +24,15 @@ FilmDetailView.prototype.createFilmDetail = function (film) {
 };
 
 FilmDetailView.prototype.createFilmSelectItem = function (film) {
-  const filmSelect = document.createElement('div');
-  filmSelect.classList.add('film_select');
+  // const filmSelect = document.createElement('div');
+  // filmSelect.classList.add('film_select');
 
-  const title = document.createElement('h2');
+  const title = document.createElement('button');
+  title.classList.add('select-film-btn');
   title.textContent = film.title;
-  filmSelect.appendChild(title);
+  // filmSelect.appendChild(title);
 
-  return filmSelect
+  return title
 };
 
 module.exports = FilmDetailView;
